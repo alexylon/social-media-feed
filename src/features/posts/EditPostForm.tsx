@@ -1,20 +1,21 @@
 import React, {useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useAppDispatch, useAppSelector} from '../../app/hooks'
 import {useHistory} from 'react-router-dom'
 
 import {postUpdated} from './postsSlice'
+import {PostAuthor} from "./PostAuthor";
 
 export const EditPostForm = ({match}: any) => {
     const {postId} = match.params
 
-    const post = useSelector((state: any) =>
+    const post = useAppSelector((state: any) =>
         state.posts.find((post: { id: any }) => post.id === postId)
     )
 
     const [title, setTitle] = useState(post.title)
     const [content, setContent] = useState(post.content)
 
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const history = useHistory()
 
     const onTitleChanged = (e: { target: { value: any } }) => setTitle(e.target.value)
@@ -22,13 +23,14 @@ export const EditPostForm = ({match}: any) => {
 
     const onSavePostClicked = () => {
         if (title && content) {
-            dispatch(postUpdated({id: postId, title, content}))
+            dispatch(postUpdated({id: postId, title, content, user: post.user}))
             history.push(`/posts/${postId}`)
         }
     }
 
     return (
         <section>
+            <PostAuthor userId={post.user}/>
             <h2>Edit Post</h2>
             <form>
                 <label htmlFor="postTitle">Post Title:</label>
