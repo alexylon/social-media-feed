@@ -12,6 +12,7 @@
     "@types/node": "^16.18.31",
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
+    "@types/react-router-dom": "5.3.3",
     "classnames": "^2.2.6",
     "date-fns": "^2.12.0",
     "faker": "^4.1.0",
@@ -29,7 +30,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "GENERATE_SOURCEMAP=false react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
